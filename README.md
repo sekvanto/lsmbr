@@ -25,4 +25,4 @@ Example on dos-labeled disk:
 ![dos2](examples/dos2.png)
 
 Gpt-labeled disk:
-![gpt](examples/gpt.png)
+![gpt](examples/gpt2.png)
