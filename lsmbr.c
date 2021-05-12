@@ -64,7 +64,7 @@ void show_bytes(unsigned char* mbr, int length) {
 }
 
 void check_file_validity(char* fd) {
-    if(!access(fd, F_OK) == 0) {
+    if (!access(fd, F_OK) == 0) {
         printf("File doesn't exist\n");
         exit(EXIT_FAILURE);
     }
