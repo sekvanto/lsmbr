@@ -19,6 +19,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include "pt-mbr-partnames.h"
 
 #define VERSION         1
 #define SUBVERSION      0
@@ -105,6 +106,14 @@ void show_chs_coords(uint8_t* chs, char* id) {
     printf("%s%.2x, %.2x, %.2x%s\n", RED, chs[0], sector, cylinder, RESET);
 }
 
+void show_type(uint8_t id) {
+    char* type = "";
+    for (size_t i = 0; pt_types[i].type != 0; i++)
+        if (pt_types[i].id == id)
+            type = pt_types[i].type;
+    printf("Id: %s%x%s, type: %s\n", RED, id, RESET, type);
+}
+
 void partition_records(unsigned char* mbr, int part_length, int part_num) {
     for (size_t i = 0; i < part_num; i++) {
         struct _partition* p = (void *) (mbr + i * part_length);
@@ -117,7 +126,10 @@ void partition_records(unsigned char* mbr, int part_length, int part_num) {
         char *bootable = p->status == 0 ? " not" : ""; 
         printf("\nBoot indicator: %s%.2x%s -%s bootable\n", RED, p->status, RESET, bootable);
         show_chs_coords(p->chs_start, "Starting");
-        //show_type()
+        show_type(p->part_type);
+        show_chs_coords(p->chs_end, "Ending");
+        printf("Logical block address of first absolute sector in the partition: %s%.2x%s\n", RED, p->lba_start, RESET);
+        printf("Number of sectors in partition: %s%.2x%s\n", RED, p->sectors, RESET);
     }
     printf("\n");
 }
