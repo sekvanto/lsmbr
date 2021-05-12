@@ -20,9 +20,9 @@ sudo ./lsmbr <disk>
 
 This tool reads first 512 bytes on a specified disk, then analyzes it and outputs detailed info.
 
-Example on dos-labeled disk:
+## Example on dos-labeled disk:
 ![dos1](examples/dos1.png)
 ![dos2](examples/dos2.png)
 
-Gpt-labeled disk:
+## Gpt-labeled disk:
 ![gpt](examples/gpt2.png)
