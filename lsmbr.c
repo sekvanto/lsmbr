@@ -78,7 +78,7 @@ void mbr_bootstrap(unsigned char* mbr, int length) {
     printf("%sBootstrap code area%s", MAGENTA, RESET);
     for (size_t i = 0; i < length; i++) {
         if (mbr[i] != 0) {
-            printf("%s - disklabel type: DOS%s\n", GREEN, RESET);
+            printf("%s - disklabel type: DOS (or GPT for legacy BIOS)%s\n", GREEN, RESET);
             break;
         }
         if (i == length - 1) {
